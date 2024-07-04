@@ -1,4 +1,4 @@
-package com.cardenas.orders_app.entity;
+package com.cardenas.orders_app.model.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;

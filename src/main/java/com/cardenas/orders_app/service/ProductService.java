@@ -3,7 +3,7 @@ package com.cardenas.orders_app.service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.cardenas.orders_app.entity.Product;
+import com.cardenas.orders_app.model.entity.Product;
 import com.cardenas.orders_app.repository.ProductRepository;
 
 @Service

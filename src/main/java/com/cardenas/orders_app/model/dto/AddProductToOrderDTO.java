@@ -1,4 +1,4 @@
-package com.cardenas.orders_app.entity.dto;
+package com.cardenas.orders_app.model.dto;
 
 import lombok.Data;
 

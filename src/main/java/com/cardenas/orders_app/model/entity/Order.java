@@ -1,4 +1,4 @@
-package com.cardenas.orders_app.entity;
+package com.cardenas.orders_app.model.entity;
 
 import java.time.LocalDateTime;
 import jakarta.persistence.*;
