@@ -7,11 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import com.cardenas.orders_app.model.dto.ProductFromOrderDTO;
 import com.cardenas.orders_app.model.entity.Product;
 import com.cardenas.orders_app.service.ProductService;
 
@@ -26,6 +25,11 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.OK).body(productService.getAllProducts());
     }
 
+    @GetMapping("/listProductsFromOrder/{orderId}")
+    public ResponseEntity<List<ProductFromOrderDTO>> getProductsFromOrder(@PathVariable int orderId) {
+        return ResponseEntity.status(HttpStatus.OK).body(productService.getProductsFromOrder(orderId));
+    }
+
     @PostMapping("/add")
     public ResponseEntity<Object> addProduct(@RequestBody Product product ) {
 
@@ -36,23 +40,6 @@ public class ProductController {
         }
 
         return ResponseEntity.status(HttpStatus.CREATED).body("Product added successfully");
-    }
-
-
-    @PutMapping("/update/{productId}")
-    public ResponseEntity<Object> updateProduct(
-            @PathVariable int productId,
-            @RequestParam("productName") String productName,
-            @RequestParam("unitPrice") Double unitPrice,
-            @RequestParam("description") String description) {
-
-        Product updatedProduct = productService.updateProduct(productId, productName, unitPrice);
-
-        if (updatedProduct == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found or failed to update");
-        }
-
-        return ResponseEntity.status(HttpStatus.OK).body("Product updated successfully");
     }
 
 }
