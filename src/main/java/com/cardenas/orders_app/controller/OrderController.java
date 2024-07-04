@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.cardenas.orders_app.model.dto.AddProductToOrderDTO;
 import com.cardenas.orders_app.model.dto.OrderDTO;
+import com.cardenas.orders_app.model.dto.UpdateOrderDTO;
 import com.cardenas.orders_app.service.OrderService;
 
 @RestController
@@ -33,7 +33,7 @@ public class OrderController {
     }
 
     @PostMapping("/addProductToOrder")
-    public ResponseEntity<String> addProductToOrder(@RequestBody AddProductToOrderDTO orderItem) {
+    public ResponseEntity<String> addProductToOrder( @RequestBody AddProductToOrderDTO orderItem ) {
         orderService.addProductToOrder(orderItem);
         return ResponseEntity.ok("Product added to order successfully");
     }
@@ -44,12 +44,12 @@ public class OrderController {
     }
 
     @PostMapping("/deleteItem/{itemId}")
-    public void deleteItemFromOrder( @PathVariable int itemId) {
+    public void deleteItemFromOrder( @PathVariable int itemId ) {
         orderService.deleteItemFromOrder(itemId);
     }
 
     @PostMapping("/updateStatus")
-    public void updateOrderStatus( @RequestParam(name = "orderId") int orderId, @RequestParam(name = "status") String status) {
-        orderService.updateOrderStatus(orderId, status);
+    public void updateOrderStatus( @RequestBody UpdateOrderDTO updateOrder ) {
+        orderService.updateOrderStatus(updateOrder.getOrderId(), updateOrder.getStatus());
     }
 }

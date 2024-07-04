@@ -1,6 +1,6 @@
 package com.cardenas.orders_app.repository;
 
-import java.security.Timestamp;
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,7 +17,7 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
      * @param p_order_date
      */
     @Query(value = "CALL sp_add_order(:p_order_number, :p_order_date)", nativeQuery = true)
-    void addOrder(@Param("p_order_number") String order_number, @Param("p_order_date") Timestamp p_order_date);
+    void addOrder(@Param("p_order_number") String order_number, @Param("p_order_date") LocalDate p_order_date);
 
     /**
      * Function that deletes a product from an order based on its ID.

@@ -1,6 +1,6 @@
 package com.cardenas.orders_app.service;
 
-import java.security.Timestamp;
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,8 +25,9 @@ public class OrderService {
         orderRepository.addProductToOrder(orderItem.getOrderId(), orderItem.getProductId(), orderItem.getQuantity());
     }
 
-    public void addOrder(String orderNumber, Timestamp orderDate) {
-        orderRepository.addOrder(orderNumber, orderDate);
+    public void addOrder(String orderNumber, String orderDate) {
+        LocalDate date = LocalDate.parse(orderDate);
+        orderRepository.addOrder(orderNumber, date);
     }
 
     public void deleteItemFromOrder(int itemId){
